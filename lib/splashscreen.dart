@@ -1,22 +1,5 @@
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Splash Screen Example',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: SplashScreen(),
-    );
-  }
-}
+import 'onboardingscreen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -45,14 +28,19 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       ),
     );
 
-    // Start the animation
-    _controller.forward().then((_) {
-      // After the animation completes, navigate to the next screen
-      // Navigator.of(context).pushReplacement(
-      //   MaterialPageRoute(
-      //     builder: (context) => HomeScreen(),
-      //   ),
-      // );
+    // Start animation and navigate after a short delay
+    _controller.forward();
+    Future.delayed(Duration(seconds: 3), _navigateToOnboarding);
+  }
+
+  void _navigateToOnboarding() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => OnboardingScreen()),
+        );
+      }
     });
   }
 
@@ -62,20 +50,20 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       body: Stack(
         fit: StackFit.expand,
         children: [
-          // Background Image
+          /// Background Image
           Image.asset(
-            'asset/bg.jpg', // Replace with your background image path
+            'asset/bg.jpg', // Ensure correct path
             fit: BoxFit.cover,
           ),
 
-          // Animated Logo
+          /// Animated Logo
           Center(
             child: FadeTransition(
               opacity: _animation,
               child: ScaleTransition(
                 scale: _animation,
                 child: Image.asset(
-                  'asset/pixelcut-export.png', // Replace with your logo image path
+                  'asset/pixelcut-export.png', // Ensure correct path
                   width: 150,
                   height: 150,
                 ),
@@ -89,8 +77,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
   @override
   void dispose() {
-    _controller.dispose(); // Dispose the animation controller
+    _controller.dispose(); // Dispose of animation controller
     super.dispose();
   }
 }
-
