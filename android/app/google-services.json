@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "791864363087",
+    "project_id": "finalaifashion",
+    "storage_bucket": "finalaifashion.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791864363087:android:9d0477e9908d86c823823a",
+        "android_client_info": {
+          "package_name": "com.example.aifasion"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjaHIwQZM3PM8q2qE1CV1BZHPDmjmpMBE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
